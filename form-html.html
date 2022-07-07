@@ -18,24 +18,24 @@
         <br>
         <input type="submit" value="Submit">
     </form>
-    <div class="commentList">
+    <div id="commentList"></div>
 
-    </div>
+    <script defer>
+        document.forms['commentForm'].onsubmit = function (event) {
+            event.preventDefault()        
+
+            const commentList = document.getElementById("commentList") 
+            const comment = document.forms['commentForm']['comment'].value
+            const from = document.forms['commentForm']['from'].value
+
+            const commentItem = document.createElement("p")
+            commentItem.textContent = `${comment} - ${from}`
+            commentList.appendChild(commentItem) 
+
+            document.forms['commentForm'].reset()
+        }
+    </script>
+
+    
 </body>
-
-<script>
-    document.querySelector("form[name=commentForm]").onsubmit = function (event) {
-        event.preventDefault()        
-
-        const commentList = document.getElementById("commentList") 
-        const comment = document.getElementById("comment").value
-        const from = document.getElementById("from").value
-
-        const commentItem = document.createElement("p")
-        commentItem.textContent = `${comment} - ${from}`
-        commentList.appendChild(commentItem) 
-
-        document.querySelector("form[name=commentForm]").reset()
-    }
-</script>
 </html>
